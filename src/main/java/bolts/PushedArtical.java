@@ -16,7 +16,7 @@ public class PushedArtical {
     public String getid(){
         return id;
     }
-    public String gettotle(){
+    public String gettitle(){
         return title;
     }
 }

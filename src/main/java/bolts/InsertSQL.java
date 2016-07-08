@@ -11,7 +11,7 @@ import java.sql.Statement;
 /**
  * Created by Administrator on 2016/7/8.
  */
-public class Insert {
+public class InsertSQL {
     public static void main(String[] args){
         String url = "jdbc:mysql://localhost:3306/work?autoReconnect=true&useSSL=false" ;
         String username = "root" ;

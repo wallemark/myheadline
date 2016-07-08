@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 
-public class test {
+public class TestSQL {
     public static void main(String[] args){
 
         String url = "jdbc:mysql://localhost:3306/work" ;

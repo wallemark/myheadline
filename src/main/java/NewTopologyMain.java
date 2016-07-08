@@ -31,9 +31,9 @@ public class NewTopologyMain {
                 .fieldsGrouping("uni+1", new Fields("uni"))
                 .fieldsGrouping("uni+2", new Fields("uni"))
                 .fieldsGrouping("uni+3", new Fields("uni"));
-        /*builder.setBolt("uni+4", new Filter1Bolt())
+        builder.setBolt("uni+4", new Filter1Bolt())
                 .shuffleGrouping("JoinBolt");
-        builder.setBolt("uni+5", new RerankBolt())
+        /*builder.setBolt("uni+5", new RerankBolt())
                 .shuffleGrouping("uni+4");*/
 
 
@@ -48,7 +48,7 @@ public class NewTopologyMain {
         try{
             cluster.submitTopology("Getting-Started-Toplogie", conf, builder.createTopology());
         }catch(Exception ex){
-            System.out.println(ex);
+            ex.printStackTrace();
         }
         Thread.sleep(1000);
         //cluster.shutdown();
