@@ -20,18 +20,18 @@ public class NewTopologyMain {
     public static void main(String[] args) throws InterruptedException {
         //Topology definition
         TopologyBuilder builder = new TopologyBuilder();
-        builder.setSpout("uni",new DrpcSpout());
-        builder.setBolt("uni+1", new GetOfflineResultBolt())
-                .shuffleGrouping("uni");
-        builder.setBolt("uni+2", new UserHistoryBolt())
-                .shuffleGrouping("uni");
-        builder.setBolt("uni+3", new PushedArticalBolt())
-                .shuffleGrouping("uni");
+        builder.setSpout("uin",new DrpcSpout());
+        builder.setBolt("uin+1", new GetOfflineResultBolt())
+                .shuffleGrouping("uin");
+        builder.setBolt("uin+2", new UserHistoryBolt())
+                .shuffleGrouping("uin");
+        builder.setBolt("uin+3", new PushedArticalBolt())
+                .shuffleGrouping("uin");
         builder.setBolt("JoinBolt", new SingleJoinBolt(new Fields("uin", "offlineresult","pushedartical","userhistory")),1)
-                .fieldsGrouping("uni+1", new Fields("uni"))
-                .fieldsGrouping("uni+2", new Fields("uni"))
-                .fieldsGrouping("uni+3", new Fields("uni"));
-        builder.setBolt("uni+4", new Filter1Bolt())
+                .fieldsGrouping("uin+1", new Fields("uin"))
+                .fieldsGrouping("uin+2", new Fields("uin"))
+                .fieldsGrouping("uin+3", new Fields("uin"));
+        builder.setBolt("uin+4", new Filter1Bolt())
                 .shuffleGrouping("JoinBolt");
         /*builder.setBolt("uni+5", new RerankBolt())
                 .shuffleGrouping("uni+4");*/

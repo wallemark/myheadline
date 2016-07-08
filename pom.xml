@@ -49,11 +49,6 @@
     <dependencies>
 
         <!-- Storm Dependency -->
-        <dependency>
-            <groupId>storm</groupId>
-            <artifactId>storm</artifactId>
-            <version>0.7.1</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.storm</groupId>
@@ -61,9 +56,14 @@
             <version>1.0.1</version>
         </dependency>
         <dependency>
-            <groupId>com.twitter.heron</groupId>
-            <artifactId>heron-storm</artifactId>
-            <version>0.14.0</version>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-core</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.storm</groupId>
+            <artifactId>storm-kafka</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 
