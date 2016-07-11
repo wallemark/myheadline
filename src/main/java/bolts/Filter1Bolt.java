@@ -26,6 +26,7 @@ public class Filter1Bolt extends BaseBasicBolt {
         List<UserHistory> userhistory = (LinkedList<UserHistory>)input.getValueByField("userhistory");
 
         //离线计算数据简单去重
+        //System.out.println(offlineresult.size());
         Set<String> offlinetemp = new HashSet<String>();
         for(OfflineResult x:offlineresult){
             if(offlinetemp.contains(x.getid())){
@@ -35,6 +36,7 @@ public class Filter1Bolt extends BaseBasicBolt {
             }
         }
         //pushedartical去重-id
+        //System.out.println(offlineresult.size());
         Set<String> pushedtemp = new HashSet<String>();
         for(PushedArtical x:pushedartical){
             pushedtemp.add(x.getid());
@@ -45,6 +47,7 @@ public class Filter1Bolt extends BaseBasicBolt {
             }
         }
         //userhistory去重-id
+        //System.out.println(offlineresult.size());
         Set<String> historytemp = new HashSet<String>();
         for(UserHistory x:userhistory){
             historytemp.add(x.getid());
@@ -55,6 +58,7 @@ public class Filter1Bolt extends BaseBasicBolt {
             }
         }
         //pushedartical去重-分词
+
         //userhistory去重-分词
         for(OfflineResult x:offlineresult){
             System.out.print(x.getid()+"     ");

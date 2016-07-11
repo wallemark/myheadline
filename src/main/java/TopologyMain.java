@@ -16,7 +16,7 @@ import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.starter.bolt.SingleJoinBolt;
 
-public class NewTopologyMain {
+public class TopologyMain {
     public static void main(String[] args) throws InterruptedException {
         //Topology definition
         TopologyBuilder builder = new TopologyBuilder();
