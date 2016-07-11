@@ -124,12 +124,12 @@ public class FilterBolt extends BaseBasicBolt {
 
 
 
-        collector.emit(new Values(uin));
+        collector.emit(new Values(uin,offlineresult));
     }
 
 
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("uin+4"));
+        declarer.declare(new Fields("uin+4","offlineresult"));
     }
 }
