@@ -25,6 +25,7 @@ public class FilterBolt extends BaseBasicBolt {
         List<PushedArtical> pushedartical = (LinkedList<PushedArtical>)input.getValueByField("pushedartical");
         List<UserHistory> userhistory = (LinkedList<UserHistory>)input.getValueByField("userhistory");
 
+
         //离线计算数据简单去重
         //System.out.println(offlineresult.size());
         Set<String> offlinetemp = new HashSet<String>();
@@ -111,8 +112,8 @@ public class FilterBolt extends BaseBasicBolt {
             System.out.print(x.gettitle()+"     ");
             System.out.print(x.gettopic()+"     ");
             System.out.println(x.geturl());
-        }*/
-        /*for(PushedArtical x:pushedartical){
+        }
+        for(PushedArtical x:pushedartical){
             System.out.print(x.getid()+"     ");
             System.out.println(x.gettitle());
         }

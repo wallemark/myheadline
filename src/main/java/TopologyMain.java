@@ -39,7 +39,7 @@ public class TopologyMain {
         //Configuration
         Config conf = new Config();
         //conf.put("wordsFile", args[0]);
-        conf.put("wordsFile", "F:\\storm-book-examples-ch02-getting_started-8e42636\\src\\main\\resources\\int.txt");
+        conf.put("wordsFile", "C:\\Users\\Administrator\\IdeaProjects\\myheadline\\src\\main\\resources\\int.txt");
         conf.setDebug(false);
         //Topology run
         conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
