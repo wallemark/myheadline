@@ -7,8 +7,7 @@ import spouts.DrpcSpout;
 import bolts.GetOfflineResultBolt;
 import bolts.UserHistoryBolt;
 import bolts.PushedArticalBolt;
-import bolts.Filter1Bolt;
-import bolts.RerankBolt;
+import bolts.FilterBolt;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
@@ -31,7 +30,7 @@ public class TopologyMain {
                 .fieldsGrouping("uin+1", new Fields("uin"))
                 .fieldsGrouping("uin+2", new Fields("uin"))
                 .fieldsGrouping("uin+3", new Fields("uin"));
-        builder.setBolt("uin+4", new Filter1Bolt())
+        builder.setBolt("uin+4", new FilterBolt())
                 .shuffleGrouping("JoinBolt");
         /*builder.setBolt("uni+5", new RerankBolt())
                 .shuffleGrouping("uni+4");*/

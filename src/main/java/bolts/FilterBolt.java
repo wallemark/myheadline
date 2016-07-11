@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * Created by Administrator on 2016/7/6.
  */
-public class Filter1Bolt extends BaseBasicBolt {
+public class FilterBolt extends BaseBasicBolt {
 
     public void cleanup() {}
 
