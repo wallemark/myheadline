@@ -45,7 +45,7 @@ public class FilterBolt extends BaseBasicBolt {
         }
         for(OfflineResult x:offlineresult){
             if(pushedtemp.contains(x.getid())){
-                System.out.println("pushedartical去重-id过滤！");
+                //System.out.println("pushedartical去重-id过滤！");
                 x.setscore(0.0);
             }
         }
@@ -57,7 +57,7 @@ public class FilterBolt extends BaseBasicBolt {
         }
         for(OfflineResult x:offlineresult){
             if(historytemp.contains(x.getid())){
-                System.out.println("userhistory去重-id过滤！");
+                //System.out.println("userhistory去重-id过滤！");
                 x.setscore(0.0);
             }
         }
@@ -77,7 +77,7 @@ public class FilterBolt extends BaseBasicBolt {
                 Simi simi = new Simi();
                 //System.out.println(simi.getSimilarity(x1.toString(),x2.toString()));
                 if(simi.getSimilarity(x1.toString(),x2.toString())>=0.5){
-                    System.out.println("pushedartical去重-分词过滤！");
+                    //System.out.println("pushedartical去重-分词过滤！");
                     s.setscore(0.0);
                     break;
                 }
@@ -99,7 +99,7 @@ public class FilterBolt extends BaseBasicBolt {
                 }
                 Simi simi = new Simi();
                 if (simi.getSimilarity(x1.toString(), x2.toString()) >= 0.5) {
-                    System.out.println("userhistory去重-分词过滤！");
+                    //System.out.println("userhistory去重-分词过滤！");
                     s.setscore(0.0);
                     break;
                 }

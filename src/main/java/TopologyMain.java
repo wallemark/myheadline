@@ -33,6 +33,8 @@ public class TopologyMain {
                 .shuffleGrouping("Join_filter");
         builder.setBolt("Filter_id_topic", new FilterIdTopicBolt())
                 .shuffleGrouping("RegularMatch");
+        builder.setBolt("result", new RerankBolt())
+                .shuffleGrouping("Filter_id_topic");
 
 
         //Configuration

@@ -50,6 +50,13 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
             System.out.println("用户历史数据读取失败！");
             se.printStackTrace() ;
         }
+        for(OfflineResult x:res){
+            System.out.print(x.getid()+"     ");
+            System.out.print(x.getscore()+"     ");
+            System.out.print(x.gettitle()+"     ");
+            System.out.print(x.gettopic()+"     ");
+            System.out.println(x.geturl());
+        }
         collector.emit(new Values(uin,res));
     }
 

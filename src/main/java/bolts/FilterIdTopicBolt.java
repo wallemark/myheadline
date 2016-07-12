@@ -66,7 +66,7 @@ public class FilterIdTopicBolt extends BaseBasicBolt {
         List<OfflineResult> res2 = new LinkedList<OfflineResult>();
         for(Map.Entry<Integer,List<OfflineResult>> entry: temp2.entrySet()){
             if(entry.getValue().size()==1){
-                res1.add(entry.getValue().get(0));
+                res2.add(entry.getValue().get(0));
             }else{
                 double max = Integer.MIN_VALUE;
                 for(OfflineResult x:entry.getValue()){
@@ -78,7 +78,7 @@ public class FilterIdTopicBolt extends BaseBasicBolt {
                     if(x.getscore()!=max){
                         x.setscore(x.getscore()*0.618);
                     }
-                    res1.add(x);
+                    res2.add(x);
                 }
             }
         }
