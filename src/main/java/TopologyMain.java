@@ -3,11 +3,8 @@
  */
 //ryanyycao edit;
 
+import bolts.*;
 import spouts.DrpcSpout;
-import bolts.GetOfflineResultBolt;
-import bolts.UserHistoryBolt;
-import bolts.PushedArticalBolt;
-import bolts.FilterBolt;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
@@ -30,10 +27,12 @@ public class TopologyMain {
                 .fieldsGrouping("uin+1", new Fields("uin"))
                 .fieldsGrouping("uin+2", new Fields("uin"))
                 .fieldsGrouping("uin+3", new Fields("uin"));
-        builder.setBolt("uin+4", new FilterBolt())
+        builder.setBolt("Join_filter", new FilterBolt())
                 .shuffleGrouping("JoinBolt");
-        /*builder.setBolt("uni+5", new RerankBolt())
-                .shuffleGrouping("uni+4");*/
+        builder.setBolt("RegularMatch", new RegularMatchBolt())
+                .shuffleGrouping("Join_filter");
+        builder.setBolt("Filter_id_topic", new FilterIdTopicBolt())
+                .shuffleGrouping("RegularMatch");
 
 
         //Configuration

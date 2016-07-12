@@ -7,8 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="477867ec-061f-48ff-9565-bce0855e96e5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/bolts/FilterIdTopicBolt.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bolts/FilterBolt.java" afterPath="$PROJECT_DIR$/src/main/java/bolts/FilterBolt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/TopologyMain.java" afterPath="$PROJECT_DIR$/src/main/java/TopologyMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java" afterPath="$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java" />
     </list>
     <ignored path="Getting-Started.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,12 +36,62 @@
       <file leaf-file-name="TopologyMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/TopologyMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="665">
-              <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+            <state relative-caret-position="304">
+              <caret line="25" column="123" selection-start-line="25" selection-start-column="123" selection-end-line="25" selection-end-column="123" />
               <folding>
-                <element signature="e#0#2094#0" expanded="true" />
+                <element signature="e#0#2127#0" expanded="true" />
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FilterIdTopicBolt.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bolts/FilterIdTopicBolt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="371">
+              <caret line="21" column="106" selection-start-line="21" selection-start-column="94" selection-end-line="21" selection-end-column="106" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#752#780#0" expanded="true" />
+                <element signature="e#1010#1025#0" expanded="true" />
+                <element signature="e#1178#1193#0" expanded="true" />
+                <element signature="e#1947#1976#0" expanded="true" />
+                <element signature="e#2187#2202#0" expanded="true" />
+                <element signature="e#2350#2365#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegularMatchBolt.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RegularMatchBolt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="219">
+              <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PushedArticalBolt.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bolts/PushedArticalBolt.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestParticiple.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bolts/TestParticiple.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -46,9 +99,11 @@
       <file leaf-file-name="RerankBolt.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
+            <state relative-caret-position="304">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -56,19 +111,33 @@
       <file leaf-file-name="GetOfflineResultBolt.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="294">
+              <caret line="39" column="52" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrpcSpout.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/spouts/DrpcSpout.java">
+      <file leaf-file-name="tset.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tset.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-589">
-              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+            <state relative-caret-position="114">
+              <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OfflineResult.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+              <folding>
+                <element signature="e#641#642#0" expanded="true" />
+                <element signature="e#954#955#0" expanded="true" />
+                <element signature="e#988#989#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,8 +145,8 @@
       <file leaf-file-name="FilterBolt.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bolts/FilterBolt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+            <state relative-caret-position="371">
+              <caret line="132" column="58" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,11 +176,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/bolts/WordCounter.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/Filter2Bolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/spouts/DrpcSpout.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/UserHistoryBolt.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/main/java/spouts/WordReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/Insert.java" />
@@ -133,7 +200,14 @@
         <option value="$PROJECT_DIR$/src/main/java/bolts/Simi.java" />
         <option value="$PROJECT_DIR$/src/main/resources/int.txt" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/FilterBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bolts/FilterIdTopic.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bolts/RegularmatchBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/TopologyMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tset.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bolts/FilterIdTopicBolt.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bolts/RegularMatchBolt.java" />
       </list>
     </option>
   </component>
@@ -194,9 +268,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -349,26 +423,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="InsertSQL" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="bolts.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="bolts.InsertSQL" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Storm_work" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="false" name="TestParticiple" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -412,6 +466,21 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="bolts.Simi" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Storm_work" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="tset" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="tset" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -660,18 +729,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.TopologyMain" />
-      <item index="1" class="java.lang.String" itemvalue="Application.InsertSQL" />
-      <item index="2" class="java.lang.String" itemvalue="Application.TestParticiple" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Test_simi" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Simi" />
+      <item index="1" class="java.lang.String" itemvalue="Application.TestParticiple" />
+      <item index="2" class="java.lang.String" itemvalue="Application.Test_simi" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Simi" />
+      <item index="4" class="java.lang.String" itemvalue="Application.tset" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.TopologyMain" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Simi" />
-        <item index="2" class="java.lang.String" itemvalue="Application.TestParticiple" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Test_simi" />
-        <item index="4" class="java.lang.String" itemvalue="Application.InsertSQL" />
+        <item index="1" class="java.lang.String" itemvalue="Application.tset" />
+        <item index="2" class="java.lang.String" itemvalue="Application.Simi" />
+        <item index="3" class="java.lang.String" itemvalue="Application.TestParticiple" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Test_simi" />
       </list>
     </recent_temporary>
   </component>
@@ -736,7 +805,14 @@
       <option name="project" value="LOCAL" />
       <updated>1468233332094</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="分词，相似度计算，过滤 debug">
+      <created>1468233551745</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1468233551745</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -760,7 +836,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.81731784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3970433" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -807,12 +883,107 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1520">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="85" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/spouts/DrpcSpout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/FilterBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/Simi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="12" column="62" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/TopologyMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#2127#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/spouts/DrpcSpout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/FilterBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2242">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TopologyMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
           <folding>
-            <element signature="e#0#2094#0" expanded="true" />
+            <element signature="e#0#2127#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -853,7 +1024,7 @@
         <state relative-caret-position="95">
           <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
           <folding>
-            <element signature="e#0#2094#0" expanded="true" />
+            <element signature="e#0#2127#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -863,7 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -882,7 +1052,7 @@
         <state relative-caret-position="247">
           <caret line="27" column="57" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
           <folding>
-            <element signature="e#0#2094#0" expanded="true" />
+            <element signature="e#0#2127#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -903,7 +1073,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#2094#0" expanded="true" />
+            <element signature="e#0#2127#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
@@ -935,13 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/PushedArticalBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bolts/UserHistoryBolt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
@@ -957,14 +1120,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/vec/domain/Neuron.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/vec/domain/WordEntry.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/vec/domain/WordNeuron.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bolts/TestSQL.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -973,68 +1128,133 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Test_simi.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/Simi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/TestParticiple.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/int.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1520">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="85" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/Simi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="12" column="62" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="62" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/spouts/DrpcSpout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-589">
+        <state relative-caret-position="133">
           <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        <state relative-caret-position="114">
+          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/FilterBolt.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+        <state relative-caret-position="304">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/TestParticiple.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="152">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/PushedArticalBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="50" column="40" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+          <folding>
+            <element signature="e#641#642#0" expanded="true" />
+            <element signature="e#954#955#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/FilterBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="132" column="58" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="39" column="52" selection-start-line="39" selection-start-column="52" selection-end-line="39" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/FilterIdTopicBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="21" column="106" selection-start-line="21" selection-start-column="94" selection-end-line="21" selection-end-column="106" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#752#780#0" expanded="true" />
+            <element signature="e#1010#1025#0" expanded="true" />
+            <element signature="e#1178#1193#0" expanded="true" />
+            <element signature="e#1947#1976#0" expanded="true" />
+            <element signature="e#2187#2202#0" expanded="true" />
+            <element signature="e#2350#2365#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RegularMatchBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TopologyMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="665">
-          <caret line="35" column="44" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+        <state relative-caret-position="304">
+          <caret line="25" column="123" selection-start-line="25" selection-start-column="123" selection-end-line="25" selection-end-column="123" />
           <folding>
-            <element signature="e#0#2094#0" expanded="true" />
+            <element signature="e#0#2127#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>

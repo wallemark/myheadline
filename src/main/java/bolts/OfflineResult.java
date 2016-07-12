@@ -10,6 +10,7 @@ public class OfflineResult{
     private String url;
     private double score;
     private int topic;
+    private String gongzhongid;
     public void setid(String x){
         this.id = x;
     }
@@ -25,6 +26,9 @@ public class OfflineResult{
     public void settopic(int x){
         this.topic = x;
     }
+    public void setgongzhongid(String x){
+        this.gongzhongid = x;
+    }
     public String getid(){
         return id;
     }
@@ -39,5 +43,8 @@ public class OfflineResult{
     }
     public int gettopic(){
         return topic;
+    }
+    public String getgongzhongid(){
+        return gongzhongid;
     }
 }

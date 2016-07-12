@@ -35,7 +35,10 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
             ResultSet result= stmt.executeQuery(sql);
             while(result.next()){
                 OfflineResult offlineresult = new OfflineResult();
-                offlineresult.setid(result.getString(1));
+                String id = result.getString(1);
+                String[] temp = id.split("_");
+                offlineresult.setgongzhongid(temp[1]);
+                offlineresult.setid(id);
                 offlineresult.settitle(result.getString(2));
                 offlineresult.seturl(result.getString(3));
                 offlineresult.setscore(result.getDouble(4));
