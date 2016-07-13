@@ -35,7 +35,10 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
     public void cleanup() {}
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-        int uin = input.getInteger(0);
+        //System.out.println(input.getValue(0));
+        //System.out.println(input.getValue(1));
+        //int uin = input.getInteger(0);
+        int uin = Integer.parseInt(input.getString(0));
         List<OfflineResult> res = new LinkedList<OfflineResult>();
         try{
             Connection conn = DriverManager.getConnection(url, username, password) ;
@@ -54,6 +57,7 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
                 offlineresult.settopic(result.getInt(5));
                 res.add(offlineresult);
             }
+            stmt.close();
             conn.close();
         }catch(Exception se){
             System.out.println("用户历史数据读取失败！");
@@ -66,10 +70,10 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
             System.out.print(x.gettopic()+"     ");
             System.out.println(x.geturl());
         }*/
-        collector.emit(new Values(uin,res));
+        collector.emit(new Values(input.getValueByField("return-info"),uin,res));
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("uin","offlineresult"));
+        declarer.declare(new Fields("return-info","uin","offlineresult"));
     }
 }

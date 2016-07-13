@@ -38,7 +38,7 @@ public class DrpcSpout extends BaseRichSpout {
             //Read all lines
             while((str = reader.readLine()) != null){
                 this.collector.emit(new Values(Integer.parseInt(str)));
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             }
         }catch(Exception e){
             throw new RuntimeException("Error reading tuple",e);

@@ -34,7 +34,8 @@ public class UserHistoryBolt extends BaseBasicBolt {
     public void cleanup() {}
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-        int uin = input.getInteger(0);
+        //int uin = input.getInteger(0);
+        int uin = Integer.parseInt(input.getString(0));
         List<UserHistory> res = new LinkedList<UserHistory>();
         try{
             Connection conn = DriverManager.getConnection(url, username, password) ;
@@ -47,6 +48,7 @@ public class UserHistoryBolt extends BaseBasicBolt {
                 userhistory.settitle(result.getString(2));
                 res.add(userhistory);
             }
+            stmt.close();
             conn.close();
         }catch(Exception se){
             System.out.println("用户历史数据读取失败！");

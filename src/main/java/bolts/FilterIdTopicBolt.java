@@ -91,12 +91,12 @@ public class FilterIdTopicBolt extends BaseBasicBolt {
                 }
             }
         }
-        collector.emit(new Values(uin,res2));
+        collector.emit(new Values(input.getValueByField("return-info"),uin,res2));
     }
 
 
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("uin", "Filter_id_topic"));
+        declarer.declare(new Fields("return-info","uin", "Filter_id_topic"));
     }
 }

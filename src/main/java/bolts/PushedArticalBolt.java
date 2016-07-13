@@ -35,7 +35,8 @@ public class PushedArticalBolt extends BaseBasicBolt {
     public void cleanup() {}
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-        int uin = input.getInteger(0);
+        //int uin = input.getInteger(0);
+        int uin = Integer.parseInt(input.getString(0));
         List<PushedArtical> res = new LinkedList<PushedArtical>();
         try{
             Connection conn = DriverManager.getConnection(url, username, password) ;
@@ -48,6 +49,7 @@ public class PushedArticalBolt extends BaseBasicBolt {
                 pushedartical.settitle(result.getString(2));
                 res.add(pushedartical);
             }
+            stmt.close();
             conn.close();
         }catch(Exception se){
             System.out.println("用户历史数据读取失败！");

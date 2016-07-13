@@ -27,6 +27,8 @@ public class FilterBolt extends BaseBasicBolt {
     public void cleanup() {}
 
     public void execute(Tuple input, BasicOutputCollector collector) {
+
+
         int uin = input.getIntegerByField("uin");
         List<OfflineResult> offlineresult = (LinkedList<OfflineResult>)input.getValueByField("offlineresult");
         List<PushedArtical> pushedartical = (LinkedList<PushedArtical>)input.getValueByField("pushedartical");
@@ -129,12 +131,12 @@ public class FilterBolt extends BaseBasicBolt {
         }*/
 
 
-        collector.emit(new Values(uin,offlineresult));
+        collector.emit(new Values(input.getValueByField("return-info"),uin,offlineresult));
     }
 
 
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("uin+4","offlineresult"));
+        declarer.declare(new Fields("return-info","uin+4","offlineresult"));
     }
 }
