@@ -1,6 +1,7 @@
 package bolts;
 
 import org.ansj.domain.Term;
+import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
@@ -17,6 +18,11 @@ import java.util.*;
  * Edit by ryanyycao
  */
 public class FilterBolt extends BaseBasicBolt {
+    double fencicanshu = 0.0;
+
+    public void prepare(Map config, TopologyContext contex){
+        this.fencicanshu = Double.parseDouble(config.get("fencicanshu").toString());
+    }
 
     public void cleanup() {}
 
@@ -77,7 +83,7 @@ public class FilterBolt extends BaseBasicBolt {
                 //System.out.println(x2.toString());
                 Simi simi = new Simi();
                 //System.out.println(simi.getSimilarity(x1.toString(),x2.toString()));
-                if(simi.getSimilarity(x1.toString(),x2.toString())>=0.5){
+                if(simi.getSimilarity(x1.toString(),x2.toString())>=fencicanshu){
                     //System.out.println("pushedartical去重-分词过滤！");
                     s.setscore(0.0);
                     break;
@@ -98,7 +104,7 @@ public class FilterBolt extends BaseBasicBolt {
                     x2 = x2.append(" ").append(temp.getName());
                 }
                 Simi simi = new Simi();
-                if (simi.getSimilarity(x1.toString(), x2.toString()) >= 0.5) {
+                if (simi.getSimilarity(x1.toString(), x2.toString()) >= fencicanshu) {
                     //System.out.println("userhistory去重-分词过滤！");
                     s.setscore(0.0);
                     break;

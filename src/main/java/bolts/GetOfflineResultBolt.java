@@ -1,5 +1,6 @@
 package bolts;
 
+import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
@@ -14,20 +15,27 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/7/6.
  * Edit by ryanyycao
  */
 public class GetOfflineResultBolt extends BaseBasicBolt {
+    String url;
+    String username;
+    String password;
+
+    public void prepare(Map config, TopologyContext contex){
+        this.url = config.get("url").toString();
+        this.username = config.get("username").toString();
+        this.password = config.get("password").toString();
+    }
 
     public void cleanup() {}
 
     public void execute(Tuple input, BasicOutputCollector collector) {
         int uin = input.getInteger(0);
-        String url = "jdbc:mysql://localhost:3306/work?autoReconnect=true&useSSL=false" ;
-        String username = "root" ;
-        String password = "123456" ;
         List<OfflineResult> res = new LinkedList<OfflineResult>();
         try{
             Connection conn = DriverManager.getConnection(url, username, password) ;

@@ -1,5 +1,6 @@
 package bolts;
 
+import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
@@ -14,6 +15,13 @@ import java.util.*;
  * Edit by ryanyycao
  */
 public class FilterIdTopicBolt extends BaseBasicBolt {
+    double gongzhonghaocanshu = 0.0;
+    double topiccanshu = 0.0;
+
+    public void prepare(Map config, TopologyContext contex){
+        this.gongzhonghaocanshu = Double.parseDouble(config.get("gongzhonghaocanshu").toString());
+        this.topiccanshu = Double.parseDouble(config.get("topiccanshu").toString());
+    }
 
     public void cleanup() {}
 
@@ -46,7 +54,7 @@ public class FilterIdTopicBolt extends BaseBasicBolt {
                 }
                 for(OfflineResult x:entry.getValue()){
                     if(x.getscore()!=max){
-                        x.setscore(x.getscore()*0.5);
+                        x.setscore(x.getscore()*gongzhonghaocanshu);
                     }
                     res1.add(x);
                 }
@@ -77,7 +85,7 @@ public class FilterIdTopicBolt extends BaseBasicBolt {
                 }
                 for(OfflineResult x:entry.getValue()){
                     if(x.getscore()!=max){
-                        x.setscore(x.getscore()*0.618);
+                        x.setscore(x.getscore()*topiccanshu);
                     }
                     res2.add(x);
                 }
