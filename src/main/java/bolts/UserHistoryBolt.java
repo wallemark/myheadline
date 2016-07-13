@@ -2,6 +2,7 @@ package bolts;
 
 /**
  * Created by Administrator on 2016/7/6.
+ * Edit by ryanyycao
  */
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;

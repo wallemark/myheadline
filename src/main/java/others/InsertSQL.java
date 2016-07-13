@@ -1,4 +1,4 @@
-package bolts;
+package others;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 /**
  * Created by Administrator on 2016/7/8.
+ * Edit by ryanyycao
  */
 public class InsertSQL {
     public static void main(String[] args){

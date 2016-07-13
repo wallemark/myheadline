@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 /**
  * Created by Administrator on 2016/7/6.
+ * Edit by ryanyycao
  */
 public class RerankBolt extends BaseBasicBolt {
 

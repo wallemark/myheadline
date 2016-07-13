@@ -11,6 +11,7 @@ import java.util.*;
 
 /**
  * Created by Ryan on 2016/7/12.
+ * Edit by ryanyycao
  */
 public class FilterIdTopicBolt extends BaseBasicBolt {
 
@@ -82,9 +83,6 @@ public class FilterIdTopicBolt extends BaseBasicBolt {
                 }
             }
         }
-
-
-
         collector.emit(new Values(uin,res2));
     }
 

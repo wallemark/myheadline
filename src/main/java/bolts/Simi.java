@@ -1,5 +1,6 @@
 package bolts; /**
  * Created by Administrator on 2016/7/11.
+ * Edit by ryanyycao
  */
 
 import java.io.UnsupportedEncodingException;
@@ -8,11 +9,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Simi {
-    /*public static void main(String[] args){
-        String s1 ="奔驰 、 丰田 们 为何 造 不 出 特斯拉 ？ 因为 穷";
-        String s2 = "重磅 ！ 在 王石 认输 同时 ， 汽车之家 CEO 今天 也 被 清洗 出局";
-        System.out.println(getSimilarity(s1,s2));
-    }*/
     public double getSimilarity(String doc1, String doc2) {
         if(doc1 == null || doc1.trim().length() == 0 || doc2 == null
                 || doc2.trim().length() == 0){

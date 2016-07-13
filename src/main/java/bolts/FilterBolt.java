@@ -14,6 +14,7 @@ import java.util.*;
 
 /**
  * Created by Administrator on 2016/7/6.
+ * Edit by ryanyycao
  */
 public class FilterBolt extends BaseBasicBolt {
 
@@ -85,7 +86,6 @@ public class FilterBolt extends BaseBasicBolt {
 
         }
 
-
         //userhistory去重-分词
         for(OfflineResult s:offlineresult) {
             StringBuilder x1 = new StringBuilder();
@@ -121,7 +121,6 @@ public class FilterBolt extends BaseBasicBolt {
             System.out.print(x.getid()+"     ");
             System.out.println(x.gettitle());
         }*/
-
 
 
         collector.emit(new Values(uin,offlineresult));

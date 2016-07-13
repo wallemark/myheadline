@@ -2,6 +2,7 @@ package bolts;
 
 /**
  * Created by Administrator on 2016/7/7.
+ * Edit by ryanyycao
  */
 public class UserHistory {
     private  String id;

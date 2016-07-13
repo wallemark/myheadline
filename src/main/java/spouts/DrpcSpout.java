@@ -2,6 +2,7 @@ package spouts;
 
 /**
  * Created by Administrator on 2016/7/6.
+ * Edit by ryanyycao
  */
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -20,7 +21,6 @@ public class DrpcSpout extends BaseRichSpout {
 
     private SpoutOutputCollector collector;
     private FileReader fileReader;
-    private boolean completed = false;
     public void ack(Object msgId) {
         System.out.println("OK:"+msgId);
     }
@@ -29,46 +29,22 @@ public class DrpcSpout extends BaseRichSpout {
         System.out.println("FAIL:"+msgId);
     }
 
-    /**
-     * The only thing that the methods will do It is emit each
-     * file line
-     */
-
     public void nextTuple() {
-        /**
-         * The nextuple it is called forever, so if we have been readed the file
-         * we will wait and then return
-         */
-        if(completed){
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                //Do nothing
-            }
-            return;
-        }
+
         String str;
         //Open the reader
         BufferedReader reader = new BufferedReader(fileReader);
         try{
             //Read all lines
             while((str = reader.readLine()) != null){
-                /**
-                 * By each line emmit a new value with the line as a their
-                 */
                 this.collector.emit(new Values(Integer.parseInt(str)));
                 Thread.sleep(1000);
             }
         }catch(Exception e){
             throw new RuntimeException("Error reading tuple",e);
-        }finally{
-            completed = true;
         }
     }
 
-    /**
-     * We will create the file and get the collector object
-     */
     public void open(Map conf, TopologyContext context,
                      SpoutOutputCollector collector) {
         try {
@@ -79,9 +55,6 @@ public class DrpcSpout extends BaseRichSpout {
         this.collector = collector;
     }
 
-    /**
-     * Declare the output field "word"
-     */
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
         declarer.declare(new Fields("uin"));
     }

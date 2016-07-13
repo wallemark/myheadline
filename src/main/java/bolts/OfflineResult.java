@@ -3,6 +3,7 @@ package bolts;
 
 /**
  * Created by Administrator on 2016/7/7.
+ * Edit by ryanyycao
  */
 public class OfflineResult{
     private String id;
