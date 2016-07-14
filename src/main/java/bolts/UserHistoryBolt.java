@@ -24,11 +24,15 @@ public class UserHistoryBolt extends BaseBasicBolt {
     String url;
     String username;
     String password;
+    java.text.SimpleDateFormat sdf;
+    java.util.Calendar cal;
 
     public void prepare(Map config, TopologyContext contex){
         this.url = config.get("url").toString();
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
+        this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");
+        this.cal = java.util.Calendar.getInstance();
     }
 
     public void cleanup() {}
@@ -37,22 +41,32 @@ public class UserHistoryBolt extends BaseBasicBolt {
         //int uin = input.getInteger(0);
         int uin = Integer.parseInt(input.getString(0));
         List<UserHistory> res = new LinkedList<UserHistory>();
-        try{
-            Connection conn = DriverManager.getConnection(url, username, password) ;
-            Statement stmt = conn.createStatement();
-            String sql = "SELECT id_,title_ FROM `mmsnsdocrp_canget` WHERE uin_ = "+uin;
-            ResultSet result= stmt.executeQuery(sql);
-            while(result.next()){
-                UserHistory userhistory = new UserHistory();
-                userhistory.setid(result.getString(1));
-                userhistory.settitle(result.getString(2));
-                res.add(userhistory);
+
+        cal.add(java.util.Calendar.DATE,-6);
+        String flag = sdf.format(cal.getTime());
+        cal.add(java.util.Calendar.DATE,+6);
+
+        while(Integer.parseInt(sdf.format(cal.getTime()))>=Integer.parseInt(flag)) {
+            String date = sdf.format(cal.getTime());
+            try{
+                Connection conn = DriverManager.getConnection(url, username, password) ;
+                Statement stmt = conn.createStatement();
+                String sql = "SELECT id_,title_ FROM `mmsnsdocrp_canget` WHERE (uin_ = "+uin + ") AND (ds_ = " + date + ")";
+                System.out.println(sql);
+                ResultSet result= stmt.executeQuery(sql);
+                while(result.next()){
+                    UserHistory userhistory = new UserHistory();
+                    userhistory.setid(result.getString(1));
+                    userhistory.settitle(result.getString(2));
+                    res.add(userhistory);
+                }
+                stmt.close();
+                conn.close();
+                cal.add(java.util.Calendar.DATE,-1);
+            }catch(Exception se){
+                System.out.println("用户历史数据读取失败！");
+                se.printStackTrace() ;
             }
-            stmt.close();
-            conn.close();
-        }catch(Exception se){
-            System.out.println("用户历史数据读取失败！");
-            se.printStackTrace() ;
         }
         collector.emit(new Values(uin,res));
     }

@@ -31,7 +31,7 @@ public class RerankBolt extends BaseBasicBolt {
         //序列化
         MmdcmyheadlineCgi.MMDCMyHeadlineResp.Builder Resbuild = MmdcmyheadlineCgi.MMDCMyHeadlineResp.newBuilder();
         List<MmdcmyheadlineCgi.ArticleInfo> articallist = new LinkedList<MmdcmyheadlineCgi.ArticleInfo>();
-        for(int i=0;i<5;i++){
+        for(int i=0;i<res.length&&i<5;i++){
             MmdcmyheadlineCgi.ArticleInfo.Builder temp = MmdcmyheadlineCgi.ArticleInfo.newBuilder();
             temp.setDate(Integer.parseInt(res[i].getdate()));
             temp.setDocId(res[i].getid());
