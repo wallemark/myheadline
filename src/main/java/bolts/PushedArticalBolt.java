@@ -32,8 +32,6 @@ public class PushedArticalBolt extends BaseBasicBolt {
         this.url = config.get("url").toString();
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
-        this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");
-        this.cal = java.util.Calendar.getInstance();
     }
 
     public void cleanup() {}
@@ -43,6 +41,8 @@ public class PushedArticalBolt extends BaseBasicBolt {
         int uin = Integer.parseInt(input.getString(0));
         List<PushedArtical> res = new LinkedList<PushedArtical>();
 
+        this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");
+        this.cal = java.util.Calendar.getInstance();
         cal.add(java.util.Calendar.DATE,-6);
         String flag = sdf.format(cal.getTime());
         cal.add(java.util.Calendar.DATE,+6);

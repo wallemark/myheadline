@@ -57,7 +57,7 @@ public class RerankBolt extends BaseBasicBolt {
             System.out.print(x.gettopic()+"     ");
             System.out.println(x.geturl());
         }*/
-
+        System.out.println(xxg.toString());
         collector.emit(new Values(Arrays.toString(xxg.toByteArray()),input.getValueByField("return-info")));
     }
 

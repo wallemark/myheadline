@@ -9,7 +9,9 @@ import bolts.*;
 
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
+//import org.apache.storm.LocalDRPC;
 import org.apache.storm.LocalDRPC;
+import org.apache.storm.StormSubmitter;
 import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.starter.bolt.SingleJoinBolt;
@@ -23,10 +25,10 @@ public class TopologyMain {
     public static void main(String[] args) throws InterruptedException {
         //Topology definition
         TopologyBuilder builder = new TopologyBuilder();
-        //builder.setSpout("Spout",new DrpcSpout());
 
-        LocalDRPC drpc = new LocalDRPC();
-        builder.setSpout("Spout", new DRPCSpout("uin", drpc));
+        //LocalDRPC drpc = new LocalDRPC();
+        //builder.setSpout("Spout", new DRPCSpout("uin", drpc));
+        builder.setSpout("Spout", new DRPCSpout("uin"));
 
 
         builder.setBolt("OfflineResultBolt", new GetOfflineResultBolt())
@@ -47,16 +49,12 @@ public class TopologyMain {
                 .shuffleGrouping("RegularMatchBolt");
         builder.setBolt("RankBolt", new RerankBolt())
                 .shuffleGrouping("FilterIdTopicBolt");
-
-        ////
         builder.setBolt("return", new ReturnResults())
                 .shuffleGrouping("RankBolt");
 
 
         //Configuration
         Config conf = new Config();
-        //conf.put("wordsFile", args[0]);
-        //从配置文件获取配置
         Properties p = new Properties();
         try {
             p.load(new FileInputStream("C:\\Users\\Administrator\\IdeaProjects\\myheadline\\src\\main\\resources\\Config.properties"));
@@ -71,33 +69,38 @@ public class TopologyMain {
             conf.put("biaotidangguolv3",p.getProperty("biaotidangguolv3"));
             conf.put("regular1",p.getProperty("regular1"));
             conf.put("regular2",p.getProperty("regular2"));
-            conf.put("wordsFile", p.getProperty("wordsFile"));
         } catch(IOException e) {
             e.printStackTrace();
         }
         conf.setDebug(false);
         //Topology run
         conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
-        LocalCluster cluster = new LocalCluster();
-        try{
-            cluster.submitTopology("Getting-Started-Toplogie", conf, builder.createTopology());
-            System.out.println(drpc.execute("uin", "111111"));
-            //Thread.sleep(2000);
-            System.out.println(drpc.execute("uin", "222222"));
-            //Thread.sleep(2000);
-            System.out.println(drpc.execute("uin", "333333"));
-            //Thread.sleep(2000);
-            System.out.println(drpc.execute("uin", "444444"));
-            //Thread.sleep(2000);
-            System.out.println(drpc.execute("uin", "555555"));
-            //Thread.sleep(2000);
+        if(args.length==0){
+            /*LocalCluster cluster = new LocalCluster();
+            try{
+                cluster.submitTopology("Getting-Started-Toplogie", conf, builder.createTopology());
+                System.out.println(drpc.execute("uin", "111111"));
+                //Thread.sleep(2000);
+                System.out.println(drpc.execute("uin", "222222"));
+                //Thread.sleep(2000);
+                System.out.println(drpc.execute("uin", "333333"));
+                //Thread.sleep(2000);
+                System.out.println(drpc.execute("uin", "444444"));
+                //Thread.sleep(2000);
+                System.out.println(drpc.execute("uin", "555555"));
+                //Thread.sleep(2000);
 
-        }catch(Exception ex){
-            ex.printStackTrace();
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+            Thread.sleep(1000);*/
+        }else{
+            try{
+                StormSubmitter.submitTopology(args[0],conf,builder.createTopology());
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
-        Thread.sleep(1000);
-        //cluster.shutdown();
-
 
     }
 }

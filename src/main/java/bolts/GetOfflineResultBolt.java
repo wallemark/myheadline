@@ -34,8 +34,6 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         this.url = config.get("url").toString();
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
-        this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");
-        this.cal = java.util.Calendar.getInstance();
     }
 
     public void cleanup() {}
@@ -48,6 +46,8 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         List<OfflineResult> res = new LinkedList<OfflineResult>();
 
         //date
+        this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");
+        this.cal = java.util.Calendar.getInstance();
         cal.add(java.util.Calendar.DATE,-6);
         String flag = sdf.format(cal.getTime());
         cal.add(java.util.Calendar.DATE,+6);
