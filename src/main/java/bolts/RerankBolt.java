@@ -37,10 +37,12 @@ public class RerankBolt extends BaseBasicBolt {
             temp.setDocId(res[i].getid());
             temp.setRelationNum(0);
             temp.setIcon("");
+            temp.setTitle(res[i].gettitle());
             temp.setRank(i+1);
-            temp.setSource(0);
+            temp.setSource(1);
             temp.setTopic(String.valueOf(res[i].gettopic()));
             temp.setUrl(res[i].geturl());
+            temp.setStrategyId(4);
             temp.setDebugInfo(String.valueOf(res[i].getscore()));
             articallist.add(temp.build());
         }
@@ -56,7 +58,7 @@ public class RerankBolt extends BaseBasicBolt {
             System.out.println(x.geturl());
         }*/
 
-        collector.emit(new Values(xxg.toString(),input.getValueByField("return-info")));
+        collector.emit(new Values(Arrays.toString(xxg.toByteArray()),input.getValueByField("return-info")));
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
