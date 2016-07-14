@@ -8,12 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="477867ec-061f-48ff-9565-bce0855e96e5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Storm_work.iml" afterPath="$PROJECT_DIR$/Storm_work.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java" afterPath="$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java" afterPath="$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java" afterPath="$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/others/MyDRPCClient.java" afterPath="$PROJECT_DIR$/src/main/java/others/MyDRPCClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/others/TestSQL.java" afterPath="$PROJECT_DIR$/src/main/java/others/TestSQL.java" />
     </list>
     <ignored path="Getting-Started.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +35,8 @@
       <file leaf-file-name="TopologyMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/TopologyMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+            <state relative-caret-position="437">
+              <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -51,8 +48,8 @@
       <file leaf-file-name="GetOfflineResultBolt.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+            <state relative-caret-position="518">
+              <caret line="64" column="43" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -71,8 +68,8 @@
       <file leaf-file-name="OfflineResult.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+            <state relative-caret-position="532">
+              <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -113,8 +110,8 @@
       <file leaf-file-name="RerankBolt.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+            <state relative-caret-position="348">
+              <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1149#1180#0" expanded="true" />
@@ -175,7 +172,6 @@
         <option value="$PROJECT_DIR$/src/main/java/others/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/others/TestParticiple.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/InsertSQL.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/PushedArtical.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/TestSQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/UserHistory.java" />
@@ -196,8 +192,9 @@
         <option value="$PROJECT_DIR$/src/main/java/others/TestSQL.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/MmdcmyheadlineCgi.java" />
         <option value="$PROJECT_DIR$/src/main/java/MMDCMYHEADLINE/MmdcmyheadlineCgi.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/others/TestDate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java" />
         <option value="$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java" />
       </list>
     </option>
@@ -917,7 +914,14 @@
       <option name="project" value="LOCAL" />
       <updated>1468415246622</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="使用protobuf对返回的returnresult进行序列化">
+      <created>1468472023479</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1468472023479</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -984,7 +988,8 @@
     <MESSAGE value="将所有固定参数改为使用配置文件统一配置" />
     <MESSAGE value="将所有固定参数改为使用配置文件统一配置:包括数据库，降权参数，正则匹配式等" />
     <MESSAGE value="drpc本地版本" />
-    <option name="LAST_COMMIT_MESSAGE" value="drpc本地版本" />
+    <MESSAGE value="使用protobuf对返回的returnresult进行序列化" />
+    <option name="LAST_COMMIT_MESSAGE" value="使用protobuf对返回的returnresult进行序列化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1262,14 +1267,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/others/TestDate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -1312,16 +1309,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bolts/OfflineResult.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        <state relative-caret-position="532">
+          <caret line="52" column="44" selection-start-line="52" selection-start-column="44" selection-end-line="52" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bolts/GetOfflineResultBolt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="64" column="43" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bolts/RerankBolt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="58" column="48" selection-start-line="58" selection-start-column="48" selection-end-line="58" selection-end-column="48" />
+        <state relative-caret-position="348">
+          <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1149#1180#0" expanded="true" />
@@ -1331,8 +1336,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/TopologyMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+        <state relative-caret-position="437">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />

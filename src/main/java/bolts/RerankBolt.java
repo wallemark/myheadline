@@ -33,15 +33,15 @@ public class RerankBolt extends BaseBasicBolt {
         List<MmdcmyheadlineCgi.ArticleInfo> articallist = new LinkedList<MmdcmyheadlineCgi.ArticleInfo>();
         for(int i=0;i<5;i++){
             MmdcmyheadlineCgi.ArticleInfo.Builder temp = MmdcmyheadlineCgi.ArticleInfo.newBuilder();
-            temp.setDate(111);
+            temp.setDate(Integer.parseInt(res[i].getdate()));
             temp.setDocId(res[i].getid());
-            temp.setRelationNum(111);
-            temp.setIcon("111");
+            temp.setRelationNum(0);
+            temp.setIcon("");
             temp.setRank(i+1);
-            temp.setSource(111);
+            temp.setSource(0);
             temp.setTopic(String.valueOf(res[i].gettopic()));
             temp.setUrl(res[i].geturl());
-            temp.setDebugInfo("111");
+            temp.setDebugInfo(String.valueOf(res[i].getscore()));
             articallist.add(temp.build());
         }
         Resbuild.addAllArticleList(articallist);

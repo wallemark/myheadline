@@ -12,6 +12,7 @@ public class OfflineResult{
     private double score;
     private int topic;
     private String gongzhongid;
+    private String date;
     public void setid(String x){
         this.id = x;
     }
@@ -27,6 +28,7 @@ public class OfflineResult{
     public void settopic(int x){
         this.topic = x;
     }
+    public void setdate(String x) { this.date = x; }
     public void setgongzhongid(String x){
         this.gongzhongid = x;
     }
@@ -48,4 +50,5 @@ public class OfflineResult{
     public String getgongzhongid(){
         return gongzhongid;
     }
+    public String getdate() { return date; }
 }

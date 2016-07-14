@@ -47,9 +47,10 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
 //
 //
 
+            String date = "20160630";
             //
             //
-            String sql = "SELECT id_,title_,url_,rp_score_,topic_ FROM `bizmsg_rp` WHERE (uin_ = "+uin+") AND (ds_ = "+20160630+")";
+            String sql = "SELECT id_,title_,url_,rp_score_,topic_ FROM `bizmsg_rp` WHERE (uin_ = "+uin+") AND (ds_ = "+date+")";
             ResultSet result= stmt.executeQuery(sql);
             while(result.next()){
                 OfflineResult offlineresult = new OfflineResult();
@@ -61,6 +62,7 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
                 offlineresult.seturl(result.getString(3));
                 offlineresult.setscore(result.getDouble(4));
                 offlineresult.settopic(result.getInt(5));
+                offlineresult.setdate(date);
                 res.add(offlineresult);
             }
             stmt.close();
