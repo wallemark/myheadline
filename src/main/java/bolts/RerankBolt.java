@@ -1,7 +1,6 @@
 package bolts;
 
-import org.apache.storm.task.OutputCollector;
-import org.apache.storm.task.TopologyContext;
+import MMDCMYHEADLINE.MmdcmyheadlineCgi;
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
@@ -22,7 +21,6 @@ public class RerankBolt extends BaseBasicBolt {
 
     public void execute(Tuple input, BasicOutputCollector collector) {
         int uin = input.getIntegerByField("uin");
-        System.out.println(uin);
         List<OfflineResult> offlineresult = (LinkedList<OfflineResult>)input.getValueByField("Filter_id_topic");
         OfflineResult[] res = new OfflineResult[offlineresult.size()];
         for(int i=0;i<res.length;i++){
@@ -30,18 +28,35 @@ public class RerankBolt extends BaseBasicBolt {
         }
         Arrays.sort(res, new MyComprator());
 
-        OfflineResult[] resreturn = new OfflineResult[5];
+        //序列化
+        MmdcmyheadlineCgi.MMDCMyHeadlineResp.Builder Resbuild = MmdcmyheadlineCgi.MMDCMyHeadlineResp.newBuilder();
+        List<MmdcmyheadlineCgi.ArticleInfo> articallist = new LinkedList<MmdcmyheadlineCgi.ArticleInfo>();
         for(int i=0;i<5;i++){
-            resreturn[i] = res[i];
+            MmdcmyheadlineCgi.ArticleInfo.Builder temp = MmdcmyheadlineCgi.ArticleInfo.newBuilder();
+            temp.setDate(111);
+            temp.setDocId(res[i].getid());
+            temp.setRelationNum(111);
+            temp.setIcon("111");
+            temp.setRank(i+1);
+            temp.setSource(111);
+            temp.setTopic(String.valueOf(res[i].gettopic()));
+            temp.setUrl(res[i].geturl());
+            temp.setDebugInfo("111");
+            articallist.add(temp.build());
         }
-        for(OfflineResult x:resreturn){
+        Resbuild.addAllArticleList(articallist);
+        Resbuild.setUin(uin);
+        MmdcmyheadlineCgi.MMDCMyHeadlineResp xxg = Resbuild.build();
+
+        /*for(OfflineResult x:resreturn){
             System.out.print(x.getid()+"     ");
             System.out.print(x.getscore()+"     ");
             System.out.print(x.gettitle()+"     ");
             System.out.print(x.gettopic()+"     ");
             System.out.println(x.geturl());
-        }
-        collector.emit(new Values("sssssss",input.getValueByField("return-info")));
+        }*/
+
+        collector.emit(new Values(xxg.toString(),input.getValueByField("return-info")));
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {

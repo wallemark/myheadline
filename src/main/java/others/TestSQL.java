@@ -14,16 +14,16 @@ import java.sql.Statement;
 public class TestSQL {
     public static void main(String[] args){
 
-        String url = "jdbc:mysql://localhost:3306/work" ;
+        String url = "jdbc:mysql://localhost:3306/work?autoReconnect=true&useSSL=false" ;
         String username = "root" ;
         String password = "123456" ;
         String id="";
         String title = "";
-        int uni = 123;
+        int uni = 111111;
         try{
             Connection conn = DriverManager.getConnection(url, username, password) ;
             Statement stmt = conn.createStatement();
-            String sql = "SELECT id_,title_ FROM `mmsnsdocrp_canget` WHERE uin_ = "+uni;
+            String sql = "SELECT id_,title_ FROM `mmsnsdocrp_canget` WHERE (uin_ = "+uni+")"+"AND (ds_ = "+20160630+")";
             ResultSet result= stmt.executeQuery(sql);
             while(result.next()){
                 id = result.getString(1);

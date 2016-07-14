@@ -23,7 +23,7 @@ public class MyDRPCClient {
         try {
             Config conf = new Config();
             DRPCClient client = new DRPCClient(conf,"127.0.0.1",3772);
-            String result = client.execute("Spout", "111111");
+            String result = client.execute("uin", "111111");
 
             System.out.println(result);
         } catch (Exception e) {

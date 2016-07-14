@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +44,12 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         try{
             Connection conn = DriverManager.getConnection(url, username, password) ;
             Statement stmt = conn.createStatement();
-            String sql = "SELECT id_,title_,url_,rp_score_,topic_ FROM `bizmsg_rp` WHERE uin_ = "+uin;
+//
+//
+
+            //
+            //
+            String sql = "SELECT id_,title_,url_,rp_score_,topic_ FROM `bizmsg_rp` WHERE (uin_ = "+uin+") AND (ds_ = "+20160630+")";
             ResultSet result= stmt.executeQuery(sql);
             while(result.next()){
                 OfflineResult offlineresult = new OfflineResult();
