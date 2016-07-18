@@ -4,6 +4,7 @@
  */
 
 
+import MMDCMYHEADLINE.MmdcmyheadlineCgi;
 import bolts.*;
 //import spouts.DrpcSpout;
 
@@ -16,8 +17,10 @@ import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.starter.bolt.SingleJoinBolt;
 import org.apache.storm.drpc.*;
+import org.apache.storm.tuple.Values;
+import org.apache.xerces.impl.dv.util.Base64;
 
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.util.Properties;
 
@@ -26,17 +29,19 @@ public class TopologyMain {
         //Topology definition
         TopologyBuilder builder = new TopologyBuilder();
 
-        //LocalDRPC drpc = new LocalDRPC();
-        //builder.setSpout("Spout", new DRPCSpout("uin", drpc));
-        builder.setSpout("Spout", new DRPCSpout("uin"));
+        LocalDRPC drpc = new LocalDRPC();
+        builder.setSpout("Spout", new DRPCSpout("uin", drpc));
+        //builder.setSpout("Spout", new DRPCSpout(args[0]));
+        builder.setBolt("SerializationBolt", new SerializationBolt())
+                .shuffleGrouping("Spout");
 
 
         builder.setBolt("OfflineResultBolt", new GetOfflineResultBolt())
-                .shuffleGrouping("Spout");
+                .shuffleGrouping("SerializationBolt");
         builder.setBolt("UserHistoryBolt", new UserHistoryBolt())
-                .shuffleGrouping("Spout");
+                .shuffleGrouping("SerializationBolt");
         builder.setBolt("PushedArticalBolt", new PushedArticalBolt())
-                .shuffleGrouping("Spout");
+                .shuffleGrouping("SerializationBolt");
         builder.setBolt("JoinBolt", new SingleJoinBolt(new Fields("return-info", "uin", "offlineresult","pushedartical","userhistory")),1)
                 .fieldsGrouping("OfflineResultBolt", new Fields("uin"))
                 .fieldsGrouping("UserHistoryBolt", new Fields("uin"))
@@ -57,7 +62,16 @@ public class TopologyMain {
         Config conf = new Config();
         Properties p = new Properties();
         try {
-            p.load(new FileInputStream("C:\\Users\\Administrator\\IdeaProjects\\myheadline\\src\\main\\resources\\Config.properties"));
+            //URL url=ss.getClass().getResource("/resources/Config.properties");
+            //URL url = new URL("C:\\Users\\Administrator\\IdeaProjects\\myheadline\\src\\main\\resources\\Config.properties");
+            //System.out.println(url);
+            //InputStream in = this.getClass().getClassLoader().getResourceAsStream("/Config.properties");
+            //p.load(in);
+
+            String confPath = "Config.properties";
+            TopologyMain ss = new TopologyMain();
+            p.load(ss.getClass().getClassLoader().getResourceAsStream(confPath));
+
             conf.put("url",p.getProperty("url"));
             conf.put("username",p.getProperty("username"));
             conf.put("password",p.getProperty("password"));
@@ -76,24 +90,40 @@ public class TopologyMain {
         //Topology run
         conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
         if(args.length==0){
-            /*LocalCluster cluster = new LocalCluster();
+            LocalCluster cluster = new LocalCluster();
             try{
                 cluster.submitTopology("Getting-Started-Toplogie", conf, builder.createTopology());
-                System.out.println(drpc.execute("uin", "111111"));
-                //Thread.sleep(2000);
-                System.out.println(drpc.execute("uin", "222222"));
-                //Thread.sleep(2000);
-                System.out.println(drpc.execute("uin", "333333"));
-                //Thread.sleep(2000);
-                System.out.println(drpc.execute("uin", "444444"));
-                //Thread.sleep(2000);
-                System.out.println(drpc.execute("uin", "555555"));
-                //Thread.sleep(2000);
+
+                for(int i=1;i<=6;i++){
+                    int x = i*111111;
+                    MmdcmyheadlineCgi.MMDCMyHeadlineReq.Builder xx = MmdcmyheadlineCgi.MMDCMyHeadlineReq.newBuilder();
+                    System.out.println(x);
+                    xx.setUin(x);
+                    xx.setStrategyId(4);
+                    xx.setMaxPushNum(5);
+                    xx.setSave2PushedFlag(false);
+                    MmdcmyheadlineCgi.MMDCMyHeadlineReq xxx = xx.build();
+                    System.out.println(xxx);
+                    String res = Base64.encode(xxx.toByteArray());
+
+                    //test 反序列化
+                    //System.out.println("/////////////");
+                    //MmdcmyheadlineCgi.MMDCMyHeadlineReq test = MmdcmyheadlineCgi.MMDCMyHeadlineReq.parseFrom(Base64.decode(res));
+                    //System.out.println(test);
+
+
+
+
+
+                    System.out.println(drpc.execute("uin",res));
+                    //Thread.sleep(2000);
+
+                }
 
             }catch(Exception ex){
                 ex.printStackTrace();
             }
-            Thread.sleep(1000);*/
+            Thread.sleep(1000);
         }else{
             try{
                 StormSubmitter.submitTopology(args[0],conf,builder.createTopology());

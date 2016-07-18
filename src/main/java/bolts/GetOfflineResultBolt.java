@@ -42,7 +42,8 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         //System.out.println(input.getValue(0));
         //System.out.println(input.getValue(1));
         //int uin = input.getInteger(0);
-        int uin = Integer.parseInt(input.getString(0));
+        //int uin = Integer.parseInt(input.getString(1));
+        int uin = input.getInteger(1);
         List<OfflineResult> res = new LinkedList<OfflineResult>();
 
         //date

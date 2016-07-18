@@ -7,6 +7,7 @@ import org.apache.storm.topology.base.BaseBasicBolt;
 import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
+import org.apache.xerces.impl.dv.util.Base64;
 
 import java.util.*;
 
@@ -50,15 +51,21 @@ public class RerankBolt extends BaseBasicBolt {
         Resbuild.setUin(uin);
         MmdcmyheadlineCgi.MMDCMyHeadlineResp xxg = Resbuild.build();
 
-        /*for(OfflineResult x:resreturn){
-            System.out.print(x.getid()+"     ");
-            System.out.print(x.getscore()+"     ");
-            System.out.print(x.gettitle()+"     ");
-            System.out.print(x.gettopic()+"     ");
-            System.out.println(x.geturl());
-        }*/
-        System.out.println(xxg.toString());
-        collector.emit(new Values(Arrays.toString(xxg.toByteArray()),input.getValueByField("return-info")));
+        //for(int i=0;i<5;i++){
+            //System.out.print(x.getid()+"     ");
+            //System.out.print(x.getscore()+"     ");
+            //System.out.print(res[i].gettitle()+"     ");
+            //System.out.print(x.gettopic()+"     ");
+            //System.out.println(x.geturl());
+        //}
+        System.out.println(xxg);
+        try {
+            String res1 = Base64.encode(xxg.toByteArray());
+            collector.emit(new Values(res1,input.getValueByField("return-info")));
+            //collector.emit(new Values(xxg.toByteArray(),input.getValueByField("return-info")));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {

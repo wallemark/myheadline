@@ -37,7 +37,8 @@ public class UserHistoryBolt extends BaseBasicBolt {
 
     public void execute(Tuple input, BasicOutputCollector collector) {
         //int uin = input.getInteger(0);
-        int uin = Integer.parseInt(input.getString(0));
+        //int uin = Integer.parseInt(input.getString(1));
+        int uin = input.getInteger(1);
         List<UserHistory> res = new LinkedList<UserHistory>();
 
         this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");

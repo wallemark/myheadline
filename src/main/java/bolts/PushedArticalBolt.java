@@ -37,8 +37,8 @@ public class PushedArticalBolt extends BaseBasicBolt {
     public void cleanup() {}
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-        //int uin = input.getInteger(0);
-        int uin = Integer.parseInt(input.getString(0));
+        int uin = input.getInteger(1);
+        //int uin = Integer.parseInt(input.getString(1));
         List<PushedArtical> res = new LinkedList<PushedArtical>();
 
         this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");
