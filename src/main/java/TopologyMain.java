@@ -42,7 +42,7 @@ public class TopologyMain {
                 .shuffleGrouping("SerializationBolt");
         builder.setBolt("PushedArticalBolt", new PushedArticalBolt())
                 .shuffleGrouping("SerializationBolt");
-        builder.setBolt("JoinBolt", new SingleJoinBolt(new Fields("return-info", "uin", "offlineresult","pushedartical","userhistory")),1)
+        builder.setBolt("JoinBolt", new SingleJoinBolt(new Fields("return-info", "uin", "offlineresult","pushedartical","userhistory","save")))
                 .fieldsGrouping("OfflineResultBolt", new Fields("uin"))
                 .fieldsGrouping("UserHistoryBolt", new Fields("uin"))
                 .fieldsGrouping("PushedArticalBolt", new Fields("uin"));
@@ -94,7 +94,7 @@ public class TopologyMain {
             try{
                 cluster.submitTopology("Getting-Started-Toplogie", conf, builder.createTopology());
 
-                for(int i=1;i<=6;i++){
+                for(int i=4;i<=4;i++){
                     int x = i*111111;
                     MmdcmyheadlineCgi.MMDCMyHeadlineReq.Builder xx = MmdcmyheadlineCgi.MMDCMyHeadlineReq.newBuilder();
                     System.out.println(x);

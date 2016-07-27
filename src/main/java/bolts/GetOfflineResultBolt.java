@@ -28,22 +28,38 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
     String password;
     java.text.SimpleDateFormat sdf;
     java.util.Calendar cal;
+    Connection conn;
+    Statement stmt;
 
 
     public void prepare(Map config, TopologyContext contex){
         this.url = config.get("url").toString();
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
+        try {
+            //Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection(url, username, password);
+            this.stmt = conn.createStatement();
+        }catch(Exception x){
+            x.printStackTrace();
+        }
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+        try {
+            stmt.close();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void execute(Tuple input, BasicOutputCollector collector) {
         //System.out.println(input.getValue(0));
         //System.out.println(input.getValue(1));
         //int uin = input.getInteger(0);
         //int uin = Integer.parseInt(input.getString(1));
-        int uin = input.getInteger(1);
+        long uin = input.getLongByField("uin");
         List<OfflineResult> res = new LinkedList<OfflineResult>();
 
         //date
@@ -52,12 +68,10 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         cal.add(java.util.Calendar.DATE,-6);
         String flag = sdf.format(cal.getTime());
         cal.add(java.util.Calendar.DATE,+6);
-        while(res.size()<10&&Integer.parseInt(sdf.format(cal.getTime()))>=Integer.parseInt(flag)) {
-            String date = sdf.format(cal.getTime());
-            try {
-                Connection conn = DriverManager.getConnection(url, username, password);
-                Statement stmt = conn.createStatement();
-                String sql = "SELECT id_,title_,url_,rp_score_,topic_ FROM `bizmsg_rp` WHERE (uin_ = " + uin + ") AND (ds_ = " + date + ")";
+        try{
+            while (res.size() < 10 && Integer.parseInt(sdf.format(cal.getTime())) >= Integer.parseInt(flag)) {
+                String date = sdf.format(cal.getTime());
+                String sql = "SELECT id_,title_,url_,rp_score_,topic_ FROM `bizmsg_rp` WHERE (uin_ = " + uin + ") AND (ds_ = \"" + date + "\")";
                 System.out.println(sql);
                 ResultSet result = stmt.executeQuery(sql);
                 while (result.next()) {
@@ -73,18 +87,15 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
                     offlineresult.setdate(date);
                     res.add(offlineresult);
                 }
-                stmt.close();
-                conn.close();
-                cal.add(java.util.Calendar.DATE,-1);
-            } catch (Exception se) {
-                System.out.println("离线计算数据读取失败！");
-                se.printStackTrace();
+                cal.add(java.util.Calendar.DATE, -1);
             }
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        collector.emit(new Values(input.getValueByField("return-info"),uin,res));
+        collector.emit(new Values(input.getValueByField("return-info"),uin,res,input.getValueByField("save")));
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("return-info","uin","offlineresult"));
+        declarer.declare(new Fields("return-info","uin","offlineresult","save"));
     }
 }

@@ -12,13 +12,11 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
 
 public class UserHistoryBolt extends BaseBasicBolt {
     String url;
@@ -26,19 +24,36 @@ public class UserHistoryBolt extends BaseBasicBolt {
     String password;
     java.text.SimpleDateFormat sdf;
     java.util.Calendar cal;
+    Connection conn;
+    Statement stmt;
 
     public void prepare(Map config, TopologyContext contex){
         this.url = config.get("url").toString();
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
+        try {
+            //Class.forName("com.mysql.jdbc.Driver");
+            this.conn = DriverManager.getConnection(url, username, password);
+            this.stmt = conn.createStatement();
+        }catch(Exception x){
+            x.printStackTrace();
+        }
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+        try {
+            stmt.close();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void execute(Tuple input, BasicOutputCollector collector) {
+        //System.out.println(System.currentTimeMillis());
         //int uin = input.getInteger(0);
         //int uin = Integer.parseInt(input.getString(1));
-        int uin = input.getInteger(1);
+        long uin = input.getLongByField("uin");
         List<UserHistory> res = new LinkedList<UserHistory>();
 
         this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");
@@ -47,27 +62,22 @@ public class UserHistoryBolt extends BaseBasicBolt {
         String flag = sdf.format(cal.getTime());
         cal.add(java.util.Calendar.DATE,+6);
 
-        while(Integer.parseInt(sdf.format(cal.getTime()))>=Integer.parseInt(flag)) {
-            String date = sdf.format(cal.getTime());
-            try{
-                Connection conn = DriverManager.getConnection(url, username, password) ;
-                Statement stmt = conn.createStatement();
-                String sql = "SELECT id_,title_ FROM `mmsnsdocrp_canget` WHERE (uin_ = "+uin + ") AND (ds_ = " + date + ")";
+        try {
+            while (Integer.parseInt(sdf.format(cal.getTime())) >= Integer.parseInt(flag)) {
+                String date = sdf.format(cal.getTime());
+                String sql = "SELECT id_,title_ FROM `mmsnsdocrp_canget` WHERE (uin_ = " + uin + ") AND (ds_ = " + date + ")";
                 System.out.println(sql);
-                ResultSet result= stmt.executeQuery(sql);
-                while(result.next()){
+                ResultSet result = stmt.executeQuery(sql);
+                while (result.next()) {
                     UserHistory userhistory = new UserHistory();
                     userhistory.setid(result.getString(1));
                     userhistory.settitle(result.getString(2));
                     res.add(userhistory);
                 }
-                stmt.close();
-                conn.close();
-                cal.add(java.util.Calendar.DATE,-1);
-            }catch(Exception se){
-                System.out.println("用户历史数据读取失败！");
-                se.printStackTrace() ;
+                cal.add(java.util.Calendar.DATE, -1);
             }
+        }catch(Exception e){
+            e.printStackTrace();
         }
         collector.emit(new Values(uin,res));
     }

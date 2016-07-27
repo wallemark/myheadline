@@ -27,17 +27,33 @@ public class PushedArticalBolt extends BaseBasicBolt {
     String password;
     java.text.SimpleDateFormat sdf;
     java.util.Calendar cal;
+    Connection conn;
+    Statement stmt;
 
     public void prepare(Map config, TopologyContext contex){
         this.url = config.get("url").toString();
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
+        try {
+            this.conn = DriverManager.getConnection(url, username, password);
+            this.stmt = conn.createStatement();
+        }catch(Exception x){
+            x.printStackTrace();
+        }
     }
 
-    public void cleanup() {}
+    public void cleanup() {
+        try {
+            stmt.close();
+            conn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-        int uin = input.getInteger(1);
+        //System.out.println(System.currentTimeMillis());
+        long uin = input.getLongByField("uin");
         //int uin = Integer.parseInt(input.getString(1));
         List<PushedArtical> res = new LinkedList<PushedArtical>();
 
@@ -46,29 +62,25 @@ public class PushedArticalBolt extends BaseBasicBolt {
         cal.add(java.util.Calendar.DATE,-6);
         String flag = sdf.format(cal.getTime());
         cal.add(java.util.Calendar.DATE,+6);
+        try{
+            //System.out.println(System.currentTimeMillis());
+            while(Integer.parseInt(sdf.format(cal.getTime()))>=Integer.parseInt(flag)) {
+                String date = sdf.format(cal.getTime());
+                    String sql = "SELECT docid_,title_ FROM `mmsnsdocrp_pushed` WHERE (uin_ = "+uin + ") AND (ds_ = " + date + ")";
+                    //System.out.println(sql);
+                    ResultSet result= stmt.executeQuery(sql);
+                    while(result.next()) {
+                        PushedArtical pushedartical = new PushedArtical();
+                        pushedartical.setid(result.getString(1));
+                        pushedartical.settitle(result.getString(2));
+                        res.add(pushedartical);
+                    }
+                    cal.add(java.util.Calendar.DATE,-1);
+                //System.out.println(System.currentTimeMillis());
 
-        while(Integer.parseInt(sdf.format(cal.getTime()))>=Integer.parseInt(flag)) {
-            String date = sdf.format(cal.getTime());
-            try{
-                Connection conn = DriverManager.getConnection(url, username, password) ;
-                Statement stmt = conn.createStatement();
-                String sql = "SELECT docid_,title_ FROM `mmsnsdocrp_pushed` WHERE (uin_ = "+uin + ") AND (ds_ = " + date + ")";
-                System.out.println(sql);
-                ResultSet result= stmt.executeQuery(sql);
-                while(result.next()){
-                    PushedArtical pushedartical = new PushedArtical();
-                    pushedartical.setid(result.getString(1));
-                    pushedartical.settitle(result.getString(2));
-                    res.add(pushedartical);
-                }
-                stmt.close();
-                conn.close();
-                cal.add(java.util.Calendar.DATE,-1);
-            }catch(Exception se){
-                System.out.println("历史推送数据读取失败！");
-                se.printStackTrace() ;
             }
-
+        }catch(Exception e){
+            e.printStackTrace();
         }
         collector.emit(new Values(uin,res));
     }

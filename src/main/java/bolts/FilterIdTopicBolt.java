@@ -27,7 +27,7 @@ public class FilterIdTopicBolt extends BaseBasicBolt {
 
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-        int uin = input.getIntegerByField("uin");
+        long uin = input.getLongByField("uin");
         List<OfflineResult> offlineresult = (LinkedList<OfflineResult>)input.getValueByField("Regularmatch");
 
         //公众号相同-过滤；
@@ -91,12 +91,12 @@ public class FilterIdTopicBolt extends BaseBasicBolt {
                 }
             }
         }
-        collector.emit(new Values(input.getValueByField("return-info"),uin,res2));
+        collector.emit(new Values(input.getValueByField("return-info"),uin,res2,input.getValueByField("save")));
     }
 
 
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("return-info","uin", "Filter_id_topic"));
+        declarer.declare(new Fields("return-info","uin", "Filter_id_topic","save"));
     }
 }

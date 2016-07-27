@@ -19,22 +19,28 @@ public class SerializationBolt extends BaseBasicBolt {
 
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-        //反序列化
         try{
 
-            //byte[] s = (byte[])input.getValue(0);
-            //System.out.println((String)input.getValue(0));
-            //MmdcmyheadlineCgi.MMDCMyHeadlineReq res = MmdcmyheadlineCgi.MMDCMyHeadlineReq.parseFrom(((String)input.getValue(0)).getBytes());
-            //MmdcmyheadlineCgi.MMDCMyHeadlineReq res = MmdcmyheadlineCgi.MMDCMyHeadlineReq.parseFrom(((String)input.getValueByField("uin")).getBytes());
+            //System.out.println(input.getValue(0));
+            //System.out.println(input.getValue(1));
+            //System.out.println(input.getString(0));
+            //System.out.println(Base64.decode(input.getString(0)));
             MmdcmyheadlineCgi.MMDCMyHeadlineReq res = MmdcmyheadlineCgi.MMDCMyHeadlineReq.parseFrom(Base64.decode(input.getString(0)));
+            //MmdcmyheadlineCgi.MMDCMyHeadlineReq res = MmdcmyheadlineCgi.MMDCMyHeadlineReq.parseFrom(input.getString(0).getBytes());
             System.out.println(res);
-            collector.emit(new Values(input.getValueByField("return-info"),res.getUin()));
+            String s;
+            if(res.getSave2PushedFlag()==true){
+                s = "true";
+            }else{
+                s = "false";
+            }
+            collector.emit(new Values(input.getValueByField("return-info"),res.getUin(),s));
         }catch(Exception e){
             e.printStackTrace();
         }
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("return-info","uin"));
+        declarer.declare(new Fields("return-info","uin","save"));
     }
 }
