@@ -11,8 +11,8 @@ import org.apache.xerces.impl.dv.util.Base64;
 
 
 /**
- * Created by Administrator on 2016/7/18.
- */
+ *  * Created by ryanyycao on 2016/7/18.
+ *   */
 public class SerializationBolt extends BaseBasicBolt {
 
     public void cleanup() {}
@@ -20,13 +20,12 @@ public class SerializationBolt extends BaseBasicBolt {
 
     public void execute(Tuple input, BasicOutputCollector collector) {
         try{
+            System.out.println(input.getString(0));
+            System.out.println(input.getValue(1));
+            System.out.println(input.getString(0).getBytes());
+            //  MmdcmyheadlineCgi.MMDCMyHeadlineReq res = MmdcmyheadlineCgi.MMDCMyHeadlineReq.parseFrom(input.getString(0).getBytes());
 
-            //System.out.println(input.getValue(0));
-            //System.out.println(input.getValue(1));
-            //System.out.println(input.getString(0));
-            //System.out.println(Base64.decode(input.getString(0)));
             MmdcmyheadlineCgi.MMDCMyHeadlineReq res = MmdcmyheadlineCgi.MMDCMyHeadlineReq.parseFrom(Base64.decode(input.getString(0)));
-            //MmdcmyheadlineCgi.MMDCMyHeadlineReq res = MmdcmyheadlineCgi.MMDCMyHeadlineReq.parseFrom(input.getString(0).getBytes());
             System.out.println(res);
             String s;
             if(res.getSave2PushedFlag()==true){
@@ -44,3 +43,4 @@ public class SerializationBolt extends BaseBasicBolt {
         declarer.declare(new Fields("return-info","uin","save"));
     }
 }
+

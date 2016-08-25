@@ -22,13 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="Getting-Started" />
-        <module name="Storm_work" />
+        <module name="myheadline" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Getting-Started" target="1.6" />
-      <module name="Storm_work" target="1.6" />
+      <module name="myheadline" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -34,13 +34,13 @@ public class FilterBolt extends BaseBasicBolt {
     public void execute(Tuple input, BasicOutputCollector collector) {
 
 
+        System.out.println("filterbolt start!" + System.currentTimeMillis());
         long uin = input.getLongByField("uin");
         List<OfflineResult> offlineresult = (LinkedList<OfflineResult>)input.getValueByField("offlineresult");
         List<PushedArtical> pushedartical = (LinkedList<PushedArtical>)input.getValueByField("pushedartical");
         List<UserHistory> userhistory = (LinkedList<UserHistory>)input.getValueByField("userhistory");
 
 
-        System.out.println(System.currentTimeMillis());
         //离线计算数据简单去重
         //System.out.println(offlineresult.size());
         Set<String> offlinetemp = new HashSet<String>();
@@ -60,7 +60,7 @@ public class FilterBolt extends BaseBasicBolt {
         }
         for(OfflineResult x:offlineresult){
             if(pushedtemp.contains(x.getid())){
-                System.out.println("pushedartical去重-id过滤！");
+                //System.out.println("pushedartical去重-id过滤！");
                 x.setscore(0.0);
             }
         }
@@ -72,29 +72,12 @@ public class FilterBolt extends BaseBasicBolt {
         }
         for(OfflineResult x:offlineresult){
             if(historytemp.contains(x.getid())){
-                System.out.println("userhistory去重-id过滤！");
+                //System.out.println("userhistory去重-id过滤！");
                 x.setscore(0.0);
             }
         }
-        //pushedartical去重-分词
-        /*for(OfflineResult s:offlineresult){
-            StringBuilder x1 = new StringBuilder();
-            for(Term temp:ToAnalysis.parse(s.gettitle())){
-                x1 = x1.append(" ").append(temp.getName());
-            }
-            for(PushedArtical x:pushedartical){
-                StringBuilder x2 = new StringBuilder();
-                for(Term temp:ToAnalysis.parse(x.gettitle())){
-                    x2 = x2.append(" ").append(temp.getName());
-                }
-                Simi simi = new Simi();
-                if(simi.getSimilarity(x1.toString(),x2.toString())>=fencicanshu){
-                    s.setscore(0.0);
-                    break;
-                }
-            }
-        }*/
-        //分词；
+        //System.out.println(System.currentTimeMillis());
+
 
         List<Set<String>> list1 = new LinkedList<Set<String>>();
         for(OfflineResult x:offlineresult){
@@ -131,6 +114,7 @@ public class FilterBolt extends BaseBasicBolt {
         }
 
 
+        //System.out.println(System.currentTimeMillis());
         for(int i=0;i<list1.size();i++){
             for(Set<String> x2:list2){
                 double all = 0.0;
@@ -141,7 +125,7 @@ public class FilterBolt extends BaseBasicBolt {
                 }
                 if((all/(Math.sqrt((double)list1.get(i).size()*x2.size())))>=fencicanshu){
                     offlineresult.get(i).setscore(0.0);
-                    System.out.println("分词去重过滤！");
+                   // System.out.println("??????!");
                     continue;
                 }
             }
@@ -154,107 +138,129 @@ public class FilterBolt extends BaseBasicBolt {
                 }
                 if((all/(Math.sqrt((double)list1.get(i).size()*x3.size())))>=fencicanshu){
                     offlineresult.get(i).setscore(0.0);
-                    System.out.println("分词去重过滤！");
+                    //System.out.println("??????!");
                     continue;
                 }
             }
         }
+        System.out.println("filterbolt end!"+System.currentTimeMillis());
+
+
+
+
+
+
+
+
 
 
         /*
-        List<String> yy = new LinkedList<String>();
-        for(OfflineResult x:offlineresult){
-            StringBuilder x2 = new StringBuilder();
-            for (Term temp : ToAnalysis.parse(x.gettitle())) {
-                x2 = x2.append(" ").append(temp.getName());
-            }
-            yy.add(x2.toString());
-        }
+           List<String> yy = new LinkedList<String>();
+           for(OfflineResult x:offlineresult){
+           StringBuilder x2 = new StringBuilder();
+           for (Term temp : ToAnalysis.parse(x.gettitle())) {
+           x2 = x2.append(" ").append(temp.getName());
+           }
+           yy.add(x2.toString());
+           }
 
-        List<String> temptemp1 = new LinkedList<String>();
+
+           List<String> temptemp1 = new LinkedList<String>();
+           for(PushedArtical x:pushedartical){
+           StringBuilder x2 = new StringBuilder();
+           for (Term temp : ToAnalysis.parse(x.gettitle())) {
+           x2 = x2.append(" ").append(temp.getName());
+           }
+           temptemp1.add(x2.toString());
+           }
+           for(String s:yy){
+           for(String tt: temptemp1){
+           if (this.simi.getSimilarity(s,tt) >= fencicanshu) {
+           offlineresult.get(yy.indexOf(s)).setscore(0.0);
+           break;
+           }
+           }
+           }
+
+
+           List<String> temptemp = new LinkedList<String>();
+           for(UserHistory x:userhistory){
+           StringBuilder x2 = new StringBuilder();
+           for (Term temp : ToAnalysis.parse(x.gettitle())) {
+           x2 = x2.append(" ").append(temp.getName());
+           }
+           temptemp.add(x2.toString());
+           }
+           for(String s:yy){
+           for(String tt: temptemp){
+           if (this.simi.getSimilarity(s,tt) >= fencicanshu) {
+           offlineresult.get(yy.indexOf(s)).setscore(0.0);
+           break;
+           }
+           }
+           }
+
+
+*/
+
+        //pushedartical去重-分词
+        /* for(OfflineResult s:offlineresult){
+           StringBuilder x1 = new StringBuilder();
+           for(Term temp:ToAnalysis.parse(s.gettitle())){
+           x1 = x1.append(" ").append(temp.getName());
+           }
+        //System.out.println(x1.toString());
         for(PushedArtical x:pushedartical){
-            StringBuilder x2 = new StringBuilder();
-            for (Term temp : ToAnalysis.parse(x.gettitle())) {
-                x2 = x2.append(" ").append(temp.getName());
-            }
-            temptemp1.add(x2.toString());
-        }*/
-
-
-
-
-
-        /*for(String s:yy){
-            for(String tt: temptemp1){
-                if (this.simi.getSimilarity(s,tt) >= fencicanshu) {
-                    offlineresult.get(yy.indexOf(s)).setscore(0.0);
-                    break;
-                }
-            }
-        }*/
-        //userhistory去重-分词
-        /*for(OfflineResult s:offlineresult) {
-            StringBuilder x1 = new StringBuilder();
-            for (Term temp : ToAnalysis.parse(s.gettitle())) {
-                x1 = x1.append(" ").append(temp.getName());
-            }
-            for (UserHistory x : userhistory) {
-                StringBuilder x2 = new StringBuilder();
-                for (Term temp : ToAnalysis.parse(x.gettitle())) {
-                    x2 = x2.append(" ").append(temp.getName());
-                }
-                Simi simi = new Simi();
-                if (simi.getSimilarity(x1.toString(), x2.toString()) >= fencicanshu) {
-                    s.setscore(0.0);
-                    break;
-                }
-            }
-        }*/
-
-
-
-        //fenci;
-
-
-        /*
-        List<String> temptemp = new LinkedList<String>();
-        for(UserHistory x:userhistory){
-            StringBuilder x2 = new StringBuilder();
-            for (Term temp : ToAnalysis.parse(x.gettitle())) {
-                x2 = x2.append(" ").append(temp.getName());
-            }
-            temptemp.add(x2.toString());
+        StringBuilder x2 = new StringBuilder();
+        for(Term temp:ToAnalysis.parse(x.gettitle())){
+        x2 = x2.append(" ").append(temp.getName());
         }
-        */
+        //System.out.println(x2.toString());
+        Simi simi = new Simi();
+        //System.out.println(simi.getSimilarity(x1.toString(),x2.toString()));
+        if(simi.getSimilarity(x1.toString(),x2.toString())>=fencicanshu){
+        //System.out.println("pushedartical去重-分词过滤！");
+        s.setscore(0.0);
+        break;
+        }
+        }
 
+        }
 
-
-
-        /*for(String s:yy){
-            for(String tt: temptemp){
-                if (this.simi.getSimilarity(s,tt) >= fencicanshu) {
-                    offlineresult.get(yy.indexOf(s)).setscore(0.0);
-                    break;
-                }
-            }
+        //userhistory去重-分词
+        for(OfflineResult s:offlineresult) {
+        StringBuilder x1 = new StringBuilder();
+        for (Term temp : ToAnalysis.parse(s.gettitle())) {
+        x1 = x1.append(" ").append(temp.getName());
+        }
+        for (UserHistory x : userhistory) {
+        StringBuilder x2 = new StringBuilder();
+        for (Term temp : ToAnalysis.parse(x.gettitle())) {
+        x2 = x2.append(" ").append(temp.getName());
+        }
+        Simi simi = new Simi();
+        if (simi.getSimilarity(x1.toString(), x2.toString()) >= fencicanshu) {
+        //System.out.println("userhistory去重-分词过滤！");
+        s.setscore(0.0);
+        break;
+        }
+        }
         }*/
-        System.out.println(System.currentTimeMillis());
-
 
         /*for(OfflineResult x:offlineresult){
-            System.out.print(x.getid()+"     ");
-            System.out.print(x.getscore()+"     ");
-            System.out.print(x.gettitle()+"     ");
-            System.out.print(x.gettopic()+"     ");
-            System.out.println(x.geturl());
+          System.out.print(x.getid()+"     ");
+          System.out.print(x.getscore()+"     ");
+          System.out.print(x.gettitle()+"     ");
+          System.out.print(x.gettopic()+"     ");
+          System.out.println(x.geturl());
         }
         for(PushedArtical x:pushedartical){
-            System.out.print(x.getid()+"     ");
-            System.out.println(x.gettitle());
+        System.out.print(x.getid()+"     ");
+        System.out.println(x.gettitle());
         }
         for(UserHistory x:userhistory){
-            System.out.print(x.getid()+"     ");
-            System.out.println(x.gettitle());
+        System.out.print(x.getid()+"     ");
+        System.out.println(x.gettitle());
         }*/
 
 

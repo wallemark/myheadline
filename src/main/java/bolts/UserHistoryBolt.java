@@ -17,7 +17,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-
 public class UserHistoryBolt extends BaseBasicBolt {
     String url;
     String username;
@@ -32,7 +31,7 @@ public class UserHistoryBolt extends BaseBasicBolt {
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection(url, username, password);
             this.stmt = conn.createStatement();
         }catch(Exception x){
@@ -50,9 +49,7 @@ public class UserHistoryBolt extends BaseBasicBolt {
     }
 
     public void execute(Tuple input, BasicOutputCollector collector) {
-        //System.out.println(System.currentTimeMillis());
         //int uin = input.getInteger(0);
-        //int uin = Integer.parseInt(input.getString(1));
         long uin = input.getLongByField("uin");
         List<UserHistory> res = new LinkedList<UserHistory>();
 
@@ -65,7 +62,7 @@ public class UserHistoryBolt extends BaseBasicBolt {
         try {
             while (Integer.parseInt(sdf.format(cal.getTime())) >= Integer.parseInt(flag)) {
                 String date = sdf.format(cal.getTime());
-                String sql = "SELECT id_,title_ FROM `mmsnsdocrp_canget` WHERE (uin_ = " + uin + ") AND (ds_ = " + date + ")";
+                String sql = "SELECT id_,title_ FROM `mmsnsdocrp_canget` WHERE (uin_ = " + uin + ") AND (ds_ = \"" + date + "\")";
                 System.out.println(sql);
                 ResultSet result = stmt.executeQuery(sql);
                 while (result.next()) {
@@ -79,6 +76,8 @@ public class UserHistoryBolt extends BaseBasicBolt {
         }catch(Exception e){
             e.printStackTrace();
         }
+
+
         collector.emit(new Values(uin,res));
     }
 

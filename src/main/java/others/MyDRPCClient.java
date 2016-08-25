@@ -8,20 +8,22 @@ package others;
 import org.apache.storm.Config;
 import org.apache.storm.utils.DRPCClient;
 
+/**
+ * DRPC客户端调用代码
+ */
 public class MyDRPCClient {
+
+    /**
+     指定DRPC地址和端口,storm.yaml文件的配置：
+     drpc.servers:
+     -  "drpcserver1"
+     -  "drpcserver12"
+     */
     public static void main(String[] args) {
         try {
             Config conf = new Config();
-            conf.setDebug(false);
-            conf.put("storm.thrift.transport", "backtype.storm.security.auth.SimpleTransportPlugin");
-            conf.put(Config.STORM_NIMBUS_RETRY_TIMES, 3);
-            conf.put(Config.STORM_NIMBUS_RETRY_INTERVAL, 10);
-            conf.put(Config.STORM_NIMBUS_RETRY_INTERVAL_CEILING, 20);
-            //conf.put(Config.DRPC_MAX_BUFFER_SIZE, 1048576);
-
-//9800
-            DRPCClient client = new DRPCClient(conf,"10.50.88.194",3774,100000);
-            String result = client.execute("myheadline", "111111");
+            DRPCClient client = new DRPCClient(conf,"127.0.0.1",3772);
+            String result = client.execute("uin", "111111");
 
             System.out.println(result);
         } catch (Exception e) {

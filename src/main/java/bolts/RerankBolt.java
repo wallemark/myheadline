@@ -1,7 +1,6 @@
 package bolts;
 
 import MMDCMYHEADLINE.MmdcmyheadlineCgi;
-import org.apache.storm.task.TopologyContext;
 import org.apache.storm.topology.BasicOutputCollector;
 import org.apache.storm.topology.OutputFieldsDeclarer;
 import org.apache.storm.topology.base.BaseBasicBolt;
@@ -9,11 +8,9 @@ import org.apache.storm.tuple.Fields;
 import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 import org.apache.xerces.impl.dv.util.Base64;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import org.apache.storm.task.TopologyContext;
 import java.util.*;
+import java.sql.*;
 
 /**
  * Created by Administrator on 2016/7/6.
@@ -33,7 +30,7 @@ public class RerankBolt extends BaseBasicBolt {
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection(url, username, password);
             this.stmt = conn.createStatement();
         }catch(Exception x){
@@ -61,8 +58,8 @@ public class RerankBolt extends BaseBasicBolt {
         Arrays.sort(res, new MyComprator());
 
 
-        //记录已推送
 
+        //jiluyituisong
         String pushedid = ""+uin+"_" + System.currentTimeMillis();
 
         try{
@@ -81,6 +78,23 @@ public class RerankBolt extends BaseBasicBolt {
         }catch(Exception e){
             e.printStackTrace();
         }
+
+
+        //jilupushed
+        /*try{
+            this.sdf = new java.text.SimpleDateFormat("yyyyMMdd");
+            this.cal = java.util.Calendar.getInstance();
+            cal.add(java.util.Calendar.DATE,0);
+            String date = sdf.format(cal.getTime());
+
+            for(int i=0;i<res.length&&i<5;i++){
+                String sql = "INSERT INTO mmsnsdocrp_pushed VALUES (\""+date+"\","+ uin +",\""+res[i].getid()+"\",\""+"123456"+"\","+ 1 +",\""+res[i].gettitle()+"\")";
+                System.out.println(sql);
+                stmt.executeUpdate(sql);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }*/
 
 
 
@@ -114,12 +128,12 @@ public class RerankBolt extends BaseBasicBolt {
         }
         MmdcmyheadlineCgi.MMDCMyHeadlineResp xxg = Resbuild.build();
 
-        //for(int i=0;i<5;i++){
-            //System.out.print(x.getid()+"     ");
-            //System.out.print(x.getscore()+"     ");
-            //System.out.print(res[i].gettitle()+"     ");
-            //System.out.print(x.gettopic()+"     ");
-            //System.out.println(x.geturl());
+        // for(int i=0;i<5;i++){
+        //System.out.print(x.getid()+"     ");
+        //System.out.print(x.getscore()+"     ");
+        //System.out.print(res[i].gettitle()+"     ");
+        //System.out.print(x.gettopic()+"     ");
+        //System.out.println(x.geturl());
         //}
         System.out.println(xxg);
         try {
@@ -146,5 +160,6 @@ public class RerankBolt extends BaseBasicBolt {
                 return 1;
             }
         }
+
     }
 }

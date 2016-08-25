@@ -9,10 +9,7 @@ import org.apache.storm.tuple.Tuple;
 import org.apache.storm.tuple.Values;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +34,7 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         this.username = config.get("username").toString();
         this.password = config.get("password").toString();
         try {
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection(url, username, password);
             this.stmt = conn.createStatement();
         }catch(Exception x){
@@ -58,7 +55,7 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         //System.out.println(input.getValue(0));
         //System.out.println(input.getValue(1));
         //int uin = input.getInteger(0);
-        //int uin = Integer.parseInt(input.getString(1));
+        System.out.println("getofflineresultbolt start!"+System.currentTimeMillis());
         long uin = input.getLongByField("uin");
         List<OfflineResult> res = new LinkedList<OfflineResult>();
 
@@ -68,6 +65,8 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         cal.add(java.util.Calendar.DATE,-6);
         String flag = sdf.format(cal.getTime());
         cal.add(java.util.Calendar.DATE,+6);
+
+
         try{
             while (res.size() < 10 && Integer.parseInt(sdf.format(cal.getTime())) >= Integer.parseInt(flag)) {
                 String date = sdf.format(cal.getTime());
@@ -92,6 +91,10 @@ public class GetOfflineResultBolt extends BaseBasicBolt {
         }catch(Exception e){
             e.printStackTrace();
         }
+
+
+
+        System.out.println("getofflineresultbolt end!"+System.currentTimeMillis());
         collector.emit(new Values(input.getValueByField("return-info"),uin,res,input.getValueByField("save")));
     }
 
